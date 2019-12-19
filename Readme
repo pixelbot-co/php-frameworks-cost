@@ -1,5 +1,5 @@
 docker build -t nginx_php_test .
-docker run --name nginx_test_cont1 -p 80:80 -d --ulimit nofile=100000:100000 nginx_php_test
+docker run --name nginx_test_cont -p 80:80 -d --ulimit nofile=100000:100000 nginx_php_test
 
 #Cheatsheet
 docker exec -i d20bf16a212b ls -la /var/log/
