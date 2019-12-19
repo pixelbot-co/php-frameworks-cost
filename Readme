@@ -2,4 +2,7 @@ docker build -t nginx_php_test .
 docker run --name nginx_test_cont1 -p 80:80 -d --ulimit nofile=100000:100000 nginx_php_test
 
 #Cheatsheet
+docker exec -i d20bf16a212b ls -la /var/log/
 docker exec -i d20bf16a212b tail /var/log/nginx.error.log
+docker exec -i fd863cb0001f /bin/sh -c "cd /www/slim/4.3.0/; composer install"
+

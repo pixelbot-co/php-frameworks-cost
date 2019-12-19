@@ -1,8 +1,14 @@
-FROM ubuntu:18.04.3
+FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=nonintercative
 
-RUN apt-get update && apt-get install -y --no-install-recommends --no-install-suggests nginx php7.2-fpm && apt-get clean
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends --no-install-suggests \
+    composer \
+    nginx \
+    php7.2-fpm \
+    unzip \
+    && apt-get clean
 
 # Nginx config
 RUN rm /etc/nginx/sites-available/* && rm /etc/nginx/sites-enabled/*
@@ -22,11 +28,11 @@ RUN echo "opcache.enable = 1" >> /etc/php/7.2/fpm/php.ini \
     && echo "opcache.validate_timestamps = 60" >> /etc/php/7.2/fpm/php.ini \
     && echo "realpath_cache_size = 4096k" >> /etc/php/7.2/fpm/php.ini \
     && echo "realpath_cache_ttl = 600" >> /etc/php/7.2/fpm/php.ini \
-    && echo "short_open_tag = On" >> /etc/php/7.2/fpm/php.ini \
+    && echo "short_open_tag = On" >> /etc/php/7.2/fpm/php.ini
 
 # Web index
 RUN mkdir -p /www/public
-COPY ./www/public/index.php /www/public
+COPY ./www/ /www/
 
 # Script for running multiple services from one container (yeah, I know)
 COPY ./start.sh /start.sh
