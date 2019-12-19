@@ -1,2 +1,2 @@
 <?php
-echo "Hello, World! (php 7.2)"
+echo "Hello, World! (php 7.2)";
