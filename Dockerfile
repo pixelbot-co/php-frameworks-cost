@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=nonintercative
 RUN apt-get update \
     && apt-get install -y --no-install-recommends --no-install-suggests \
     composer \
+    nano \
     nginx \
     php7.2-fpm \
     unzip \
