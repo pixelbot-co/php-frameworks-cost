@@ -20,6 +20,7 @@ $durationSeconds = array_key_exists('d', $opt) ? (int)$opt['d'] : $durationSecon
 $testRange = setTestRangeFromOptions($opt, $connectionsFrom, $connectionsTo, $connectionsStep);
 $testName = extractTestNameFromUrl($url);
 $logFile = __DIR__ . "/test.{$testName}.log";
+$wrkFile = __DIR__ . "/../../wrk/wrk";
 
 $cnt = 1;
 
@@ -28,7 +29,7 @@ foreach ($testRange as $connections) {
     $output = [];
 
     $startTime = (new DateTime())->format('Y-m-d H:i:s');
-    $command = "wrk -t1 -c{$connections} -d{$durationSeconds}s -s test.lua {$url} --timeout=1s";
+    $command = "{$wrkFile} -t1 -c{$connections} -d{$durationSeconds}s -s test.lua {$url} --timeout=1s";
 
     if ($cnt == 1) {
         $response = testUrl($url);

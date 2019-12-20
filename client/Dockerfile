@@ -15,7 +15,7 @@ RUN apt-get update \
 # Installing wrk
 RUN git clone https://github.com/wg/wrk.git wrk
 RUN cd wrk && make
-RUN cp wrk /usr/local/bin
+# RUN cp wrk /usr/local/bin
 
 # pft
 RUN git clone https://github.com/pixelbot-co/php-frameworks-cost.git pft
