@@ -12,8 +12,10 @@ RUN apt-get update \
     php7.2-curl \
     && apt-get clean
 
+RUN pwd
 # Installing wrk
 RUN git clone https://github.com/wg/wrk.git wrk
+RUN pwd
 RUN cd wrk && make
 # RUN cp wrk /usr/local/bin
 RUN cd ..
