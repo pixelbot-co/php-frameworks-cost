@@ -20,7 +20,7 @@ $durationSeconds = array_key_exists('d', $opt) ? (int)$opt['d'] : $durationSecon
 $testRange = setTestRangeFromOptions($opt, $connectionsFrom, $connectionsTo, $connectionsStep);
 $testName = extractTestNameFromUrl($url);
 $logFile = __DIR__ . "/test.{$testName}.log";
-$wrkFile = __DIR__ . "/../../wrk/wrk";
+$wrkFile = "/root/wrk/wrk";
 
 $cnt = 1;
 
