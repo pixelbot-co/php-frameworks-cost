@@ -24,3 +24,6 @@ cp wrk /usr/local/bin
 git clone https://github.com/pixelbot-co/php-frameworks-cost.git
 cd php-frameworks-cost
 
+# php
+apt-get install php7.2-fpm php7.2-curl
+
