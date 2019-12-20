@@ -12,17 +12,14 @@ RUN apt-get update \
     php7.2-curl \
     && apt-get clean
 
-RUN pwd
 # Installing wrk
-RUN git clone https://github.com/wg/wrk.git wrk
-RUN pwd
-RUN cd wrk && make
-# RUN cp wrk /usr/local/bin
-RUN cd ..
+RUN git clone https://github.com/wg/wrk.git /root/wrk
+RUN cd /root/wrk && make
+RUN cp /root/wrk/wrk /usr/local/bin
 # pft
-RUN git clone https://github.com/pixelbot-co/php-frameworks-cost.git pft
+RUN git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/pft
 
 # Script for running multiple services from one container (yeah, I know)
-RUN chmod +x pft/client/start.sh
+RUN chmod +x /root/pft/client/start.sh
 
-ENTRYPOINT ["pft/client/start.sh"]
+ENTRYPOINT ["/root/pft/client/start.sh"]
