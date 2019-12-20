@@ -1,6 +1,6 @@
 <?php
 /*
-php /root/pft/test.php -f=1 -t=2 -s=1 -d=10 -u="http://157.245.220.205/slim/4.3.0/"
+php pft/client/test.php -f=1 -t=2 -s=1 -d=10 -u="http://157.245.220.205/slim/4.3.0/"
 html range(32, 2048, 32);
 php range(4, 512, 4);
 frameworks range(1, 300, 1);

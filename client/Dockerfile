@@ -16,14 +16,11 @@ RUN apt-get update \
 RUN git clone https://github.com/wg/wrk.git wrk
 RUN cd wrk && make
 # RUN cp wrk /usr/local/bin
-
+RUN cd ..
 # pft
 RUN git clone https://github.com/pixelbot-co/php-frameworks-cost.git pft
 
 # Script for running multiple services from one container (yeah, I know)
-COPY ./start.sh /start.sh
-RUN chmod +x /start.sh
+RUN chmod +x pft/client/start.sh
 
-EXPOSE 80
-
-ENTRYPOINT ["/start.sh"] 
+ENTRYPOINT ["pft/client/start.sh"]
