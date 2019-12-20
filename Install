@@ -21,8 +21,10 @@ make
 cp wrk /usr/local/bin
 
 # pft
-git clone https://github.com/pixelbot-co/php-frameworks-cost.git
-cd php-frameworks-cost
+git clone https://github.com/pixelbot-co/php-frameworks-cost.git pft
+cd pft/client
+docker build -t docker_client .
+
 
 # php
 apt-get install php7.2-fpm php7.2-curl
