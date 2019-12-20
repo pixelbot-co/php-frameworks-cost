@@ -2,6 +2,9 @@ FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=nonintercative
 
+# pft
+COPY . /root/pft/client
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends --no-install-suggests \
     build-essential \
@@ -15,9 +18,6 @@ RUN apt-get update \
 # Installing wrk
 RUN git clone https://github.com/wg/wrk.git /root/wrk
 RUN cd /root/wrk && make
-
-# pft
-RUN git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/pft
 
 # Script for running multiple services from one container (yeah, I know)
 RUN chmod +x /root/pft/client/start.sh
