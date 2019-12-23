@@ -1,6 +1,6 @@
 <?php
 /*
-php pft/client/test.php -f=1 -t=2 -s=1 -d=10 -u="http://157.245.220.205/slim/4.3.0/"
+php code/client/test.php -f=1 -t=2 -s=1 -d=10 -u="http://157.245.220.205/slim/4.3.0/"
 html range(32, 2048, 32);
 php range(4, 512, 4);
 frameworks range(1, 300, 1);
@@ -19,7 +19,11 @@ $url = (string)$opt['u'];
 $durationSeconds = array_key_exists('d', $opt) ? (int)$opt['d'] : $durationSeconds;
 $testRange = setTestRangeFromOptions($opt, $connectionsFrom, $connectionsTo, $connectionsStep);
 $testName = extractTestNameFromUrl($url);
-$logFile = "/root/test_data/test.{$testName}.log";
+$logDir = "/root/data";
+if (!file_exists($logDir)) {
+    mkdir($logDir);
+}
+$logFile = "{$logDir}/test.{$testName}.log";
 $wrkFile = "/root/wrk/wrk";
 
 $cnt = 1;

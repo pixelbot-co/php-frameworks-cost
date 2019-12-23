@@ -5,18 +5,15 @@
 2. Create droplet > Marketplace > Docker > 5$ > SF > Create
 
 3. Login to your droplet with your password or via ssh
-```
-ssh root@{youDropletIp}
-```
 
 4. Clone this project
 ```
-git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/pft
+git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/code
 ```
 
 5. Build Docker image
 ```
-docker build -t server /root/pft/server
+docker build -t server /root/code/server
 ```
 
 6. Run Docker image (it will run in background)

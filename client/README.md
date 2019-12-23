@@ -5,33 +5,23 @@
 2. Create droplet > Marketplace > Docker > 5$ > SF > Create
 
 3. Login to your droplet with your password or via ssh
+
+4. Clone this project
 ```
-ssh root@{youDropletIp}
+git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/code
+```
+5. Build Docker image (need to change to prebuild image on hub.docker)
+```
+docker build -t client_image /root/code/client
+```
+6. Run Docker image (it will run in background)
+```
+docker run --name c1 -v /root/data:/root/data -d client
 ```
 
-4. Make directory for test data (need to automate this part)
+7. Run a test
 ```
-mkdir /root/test_data
-```
-
-5. Clone this project
-```
-git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/pft
+docker exec c1 php /root/code/client/test.php -u="http://157.245.220.205/slim/4.3.0/"
 ```
 
-6. Build Docker image (need to change to prebuild image on hub.docker)
-```
-docker build -t client_image /root/pft/client
-```
-
-7. Run Docker image (it will run in background)
-```
-docker run --name c1 -v /root/test_data:/root/test_data -d client
-```
-
-8. Run a test
-```
-docker exec c1 php /root/pft/client/test.php -u="http://157.245.220.205/slim/4.3.0/"
-```
-
-9. Check ```/root/test_data/``` for result logs
+8. Check ```/root/data/``` for result logs

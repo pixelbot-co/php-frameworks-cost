@@ -23,5 +23,5 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Copying client code
-COPY . /root/pft/client
+COPY . /root/code/client
 
