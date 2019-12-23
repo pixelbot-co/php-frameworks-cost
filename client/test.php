@@ -16,22 +16,24 @@ $opt = getopt("u:f::t::s::d::");
 validateOptions($opt);
 
 $url = (string)$opt['u'];
-$durationSeconds = array_key_exists('d', $opt) ? (int)$opt['d'] : $durationSeconds;
-$testRange = setTestRangeFromOptions($opt, $connectionsFrom, $connectionsTo, $connectionsStep);
+
 $framework = extractFrameworkFromUrl($url);
-$frameworkSlug = implode("/", $framework);
-if (!file_exists("/root/code/server/www/{$frameworkSlug}/")) {
-    echo "ERROR: framework {$frameworkSlug} is not found!\n";
-    exit;
-}
+
+validateFramework($framework);
+
+$durationSeconds = array_key_exists('d', $opt) ? (int)$opt['d'] : $durationSeconds;
+
+$testRange = setTestRangeFromOptions($opt, $connectionsFrom, $connectionsTo, $connectionsStep);
+
 $testName = implode("-", $framework);
-$logDir = "/root/data";
+$logDir = __DIR__ . "/../../data";
 if (!file_exists($logDir)) {
     mkdir($logDir);
 }
 $logFile = "{$logDir}/test.{$testName}.log";
+
 $wrkFile = "wrk";
-$scriptFile = "/root/code/client/test.lua";
+$scriptFile = __DIR__ . "/test.lua";
 
 $cnt = 1;
 
@@ -40,6 +42,7 @@ foreach ($testRange as $connections) {
     $output = [];
 
     $startTime = (new DateTime())->format('Y-m-d H:i:s');
+
     $command = "{$wrkFile} -t1 -c{$connections} -d{$durationSeconds}s -s {$scriptFile} {$url} --timeout=1s";
 
     if ($cnt == 1) {
@@ -56,6 +59,7 @@ foreach ($testRange as $connections) {
     echo "{$json}\n\n";
 
     $endTime = (new DateTime())->format('Y-m-d H:i:s');
+
     $json = addDataToJson($json, $cnt, $startTime, $endTime, $testName, $command);
 
     file_put_contents($logFile, $json, FILE_APPEND | LOCK_EX);
@@ -65,19 +69,23 @@ foreach ($testRange as $connections) {
 }
 
 function validateOptions($opt) {
+    if (!array_key_exists('u', $opt)) {
+        echo "ERROR: -u url is empty!\n";
+        exit;
+    }
     if (
         array_key_exists('f', $opt)
         && array_key_exists('t', $opt)
         && (int)$opt['t'] < (int)$opt['f']
     ) {
-        echo "ERROR: -t must be bigger than -f\n";
+        echo "ERROR: -t must be bigger than -f!\n";
         exit;
     }
     if (
         array_key_exists('s', $opt)
         && (int)$opt['s'] > (int)$opt['t']-(int)$opt['f']
     ) {
-        echo "ERROR: -s must be smaller than -t\n";
+        echo "ERROR: -s must be smaller than -t!\n";
         exit;
     }
 }
@@ -108,6 +116,16 @@ function testUrl($url) {
     } catch (Exception $e) {
         exit;
     }
+}
+
+function validateFramework($framework) {
+    $frameworkSlug = implode("/", $framework);
+    $frameworkPath = __DIR__ . "/../server/www/{$frameworkSlug}/";
+    if (!file_exists($frameworkPath)) {
+        echo "ERROR: framework {$frameworkSlug} is not found!\n";
+        exit;
+    }
+    return;
 }
 
 function extractJsonFromOutput ($output) {
