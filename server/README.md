@@ -18,7 +18,7 @@ docker build -t server /root/code/server
 
 6. Run Docker image (it will run in background)
 ```
-docker run --name s1 -d server
+docker run --name server1 -d server
 ```
 
 ##Now it is time to [set up your Client node](../client/README.md)

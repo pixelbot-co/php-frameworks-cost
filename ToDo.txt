@@ -1,5 +1,5 @@
 ToDo.txt
-- stop test if framework slug from url is not valid
+- DONE stop test if framework slug from url is not valid
 
 
 

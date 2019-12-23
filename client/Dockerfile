@@ -15,6 +15,7 @@ RUN apt-get install software-properties-common \
 # Installing packages
 RUN apt-get update \
     && apt-get install -y --no-install-recommends --no-install-suggests \
+    git \
     ntp \
     php7.2-fpm \
     php7.2-curl \
@@ -22,6 +23,8 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/code
+
 # Copying client code
-COPY . /root/code/client
+#COPY . /root/code/client
 
