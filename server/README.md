@@ -1,25 +1,25 @@
 # Set up your Server node
 
-Log in to your Digital Ocean account
+1. Log in to your Digital Ocean account
 
-Create droplet > Marketplace > Docker > 5$ > SF > Create
+2. Create droplet > Marketplace > Docker > 5$ > SF > Create
 
-Login to your droplet with your password or via ssh
-```shell
+3. Login to your droplet with your password or via ssh
+```
 ssh root@{youDropletIp}
 ```
 
-Clone this project
+4. Clone this project
 ```
 git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/pft
 ```
 
-Build Docker image
+5. Build Docker image
 ```
 docker build -t server /root/pft/server
 ```
 
-Run Docker image (it will run in background)
+6. Run Docker image (it will run in background)
 ```
 docker run --name s1 -d server
 ```
