@@ -1,4 +1,7 @@
-FROM ubuntu:18.04
+FROM phusion/baseimage:0.11
+
+# Use baseimage-docker's init system.
+CMD ["/sbin/my_init"]
 
 ENV DEBIAN_FRONTEND=nonintercative
 
@@ -7,6 +10,7 @@ RUN apt-get update \
     composer \
     nano \
     nginx \
+    ntp \
     php7.2-fpm \
     unzip \
     && apt-get clean \
