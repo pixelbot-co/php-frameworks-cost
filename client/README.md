@@ -16,12 +16,11 @@ docker build -t client_image /root/code/client
 ```
 6. Run Docker image (it will run in background)
 ```
-docker run --name c1 -v /root/data:/root/data -d client
+docker run --name client -v /root/data:/root/data -d client_image
 ```
-
 7. Run a test
 ```
-docker exec c1 php /root/code/client/test.php -u="http://157.245.220.205/slim/4.3.0/"
+docker exec client php /root/code/client/test.php -u="http://157.245.220.205/slim/4.3.0/" -t=2
 ```
 
 8. Check ```/root/data/``` for result logs

@@ -24,7 +24,8 @@ if (!file_exists($logDir)) {
     mkdir($logDir);
 }
 $logFile = "{$logDir}/test.{$testName}.log";
-$wrkFile = "/root/wrk/wrk";
+$wrkFile = "wrk";
+$scriptFile = "/root/code/client/test.lua";
 
 $cnt = 1;
 
@@ -33,7 +34,7 @@ foreach ($testRange as $connections) {
     $output = [];
 
     $startTime = (new DateTime())->format('Y-m-d H:i:s');
-    $command = "{$wrkFile} -t1 -c{$connections} -d{$durationSeconds}s -s test.lua {$url} --timeout=1s";
+    $command = "{$wrkFile} -t1 -c{$connections} -d{$durationSeconds}s -s {$scriptFile} {$url} --timeout=1s";
 
     if ($cnt == 1) {
         $response = testUrl($url);
