@@ -9,7 +9,7 @@ RUN apt-get update \
     nginx \
     php7.2-fpm \
     unzip \
-    && apt-get clean
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Nginx config

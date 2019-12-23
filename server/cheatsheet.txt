@@ -1,0 +1,10 @@
+Building docker image
+
+docker login
+git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/code
+docker build -t server_image /root/code/server
+docker run --name server -d server_image
+docker ps -a
+docker commit 6ca205e38fdb pft_server
+docker tag pft_server pixelbotco/pft_server
+docker push pixelbotco/pft_server

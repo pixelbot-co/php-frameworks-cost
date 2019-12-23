@@ -6,19 +6,14 @@
 
 3. Login to your droplet with your password or via ssh
 
-4. Clone this project
+4. Get Docker image for runnig server node
 ```
-git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/code
-```
-
-5. Build Docker image
-```
-docker build -t server /root/code/server
+docker pull pixelbotco/pft_server
 ```
 
-6. Run Docker image (it will run in background)
+5. Run the image (it will run in background)
 ```
-docker run --name server1 -d server
+docker run --name server -v /var/log:/var/log -d pixelbotco/pft_server:latest
 ```
 
 ##Now it is time to [set up your Client node](../client/README.md)
