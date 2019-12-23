@@ -137,7 +137,7 @@ function addDataToJson($json, $cnt, $startTime, $endTime, $testName, $command) {
     return $json;
 }
 
-function extractFrameworkNameFromUrl($url) {
+function extractFrameworkFromUrl($url) {
     $pattern = '@^http://[^/]+/([^/]+)/([^/]+)/$@i';
     $urlExample = "http://ip/framework/version/";
     $framework = '';
