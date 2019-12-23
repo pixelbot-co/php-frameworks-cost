@@ -15,6 +15,6 @@ docker exec c1 php /root/code/client/test.php -u="http://{serverDropletIp}/{fram
 
 ## List of frameworks available for testing 
 
-| Framework | Version | Url                   |
-| ----------|--------:| ----------------------|
-| slim      |    4.3.0| http://ip/slim/4.3.0/ |
+|Framework | Version |Url                   |
+|:---------|--------:|:---------------------|
+|slim      |    4.3.0|http://ip/slim/4.3.0/ |
