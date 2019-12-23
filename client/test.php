@@ -18,7 +18,13 @@ validateOptions($opt);
 $url = (string)$opt['u'];
 $durationSeconds = array_key_exists('d', $opt) ? (int)$opt['d'] : $durationSeconds;
 $testRange = setTestRangeFromOptions($opt, $connectionsFrom, $connectionsTo, $connectionsStep);
-$testName = extractTestNameFromUrl($url);
+$framework = extractFrameworkFromUrl($url);
+$frameworkSlug = implode("/", $framework);
+if (!file_exists("../server/www/{$frameworkSlug}/")) {
+    echo "ERROR: framework {$frameworkSlug} is not found!\n";
+    exit;
+}
+$testName = implode("-", $framework);
 $logDir = "/root/data";
 if (!file_exists($logDir)) {
     mkdir($logDir);
@@ -131,7 +137,7 @@ function addDataToJson($json, $cnt, $startTime, $endTime, $testName, $command) {
     return $json;
 }
 
-function extractTestNameFromUrl($url) {
+function extractFrameworkNameFromUrl($url) {
     $pattern = '@^http://[^/]+/([^/]+)/([^/]+)/$@i';
     $urlExample = "http://ip/framework/version/";
     $framework = '';
@@ -149,6 +155,9 @@ function extractTestNameFromUrl($url) {
     }
     $framework = $matches[1];
     $version = $matches[2];
-    return "{$framework}-{$version}";
+    return [
+        "name" => $framework,
+        "version" => $version
+    ];
 }
 ?>
