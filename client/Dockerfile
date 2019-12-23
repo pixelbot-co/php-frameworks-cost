@@ -24,7 +24,3 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN git clone https://github.com/pixelbot-co/php-frameworks-cost.git /root/code
-
-# Copying client code
-#COPY . /root/code/client
-

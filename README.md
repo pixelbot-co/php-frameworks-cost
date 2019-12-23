@@ -10,5 +10,11 @@
 
 4. Run a test
 ```
-docker exec c1 php /root/code/client/test.php -u="http://{serverDropletIp}/slim/4.3.0/"
+docker exec c1 php /root/code/client/test.php -u="http://{serverDropletIp}/{framework}/{version}/"
 ```
+
+##List of frameworks available for testing 
+
+| Framework | Version | Url                   |
+| ----------|--------:|-----------------------|
+| slim      |    4.3.0| http://ip/slim/4.3.0/ |
