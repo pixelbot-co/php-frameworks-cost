@@ -10,6 +10,7 @@ RUN apt-get update \
     php7.2-fpm \
     unzip \
     && apt-get clean
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Nginx config
 RUN rm /etc/nginx/sites-available/* && rm /etc/nginx/sites-enabled/*

@@ -6,9 +6,9 @@ php range(4, 512, 4);
 frameworks range(1, 300, 1);
 */
 $connectionsFrom = 1;
-$connectionsTo = 1;
+$connectionsTo = 10;
 $connectionsStep = 1;
-$durationSeconds = 1;
+$durationSeconds = 10;
 $testRange = [1];
 
 $opt = getopt("u:f::t::s::d::");
@@ -19,7 +19,7 @@ $url = (string)$opt['u'];
 $durationSeconds = array_key_exists('d', $opt) ? (int)$opt['d'] : $durationSeconds;
 $testRange = setTestRangeFromOptions($opt, $connectionsFrom, $connectionsTo, $connectionsStep);
 $testName = extractTestNameFromUrl($url);
-$logFile = __DIR__ . "/test.{$testName}.log";
+$logFile = "/root/test_data/test.{$testName}.log";
 $wrkFile = "/root/wrk/wrk";
 
 $cnt = 1;

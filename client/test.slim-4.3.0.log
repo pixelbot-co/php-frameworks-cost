@@ -1,1 +1,0 @@
-{"start":"2019-12-20 08:52:19","end":"2019-12-20 08:52:20","name":"slim-4.3.0","cnt":1,"command":"wrk -t1 -c -d10s -s test.lua http:\/\/157.245.220.205\/slim\/4.3.0\/ --timeout=1s"}, 
