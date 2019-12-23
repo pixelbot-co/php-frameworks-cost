@@ -20,7 +20,7 @@ $durationSeconds = array_key_exists('d', $opt) ? (int)$opt['d'] : $durationSecon
 $testRange = setTestRangeFromOptions($opt, $connectionsFrom, $connectionsTo, $connectionsStep);
 $framework = extractFrameworkFromUrl($url);
 $frameworkSlug = implode("/", $framework);
-if (!file_exists("../server/www/{$frameworkSlug}/")) {
+if (!file_exists("/root/code/server/www/{$frameworkSlug}/")) {
     echo "ERROR: framework {$frameworkSlug} is not found!\n";
     exit;
 }
